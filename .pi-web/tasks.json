@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "server.start",
+      "title": "Start Server (dev)",
+      "group": "Server",
+      "description": "Start the paste HTTP server manually for dev/debugging. Auto-started by pi extension normally.",
+      "command": "node server.mjs"
+    },
+    {
+      "id": "server.stop",
+      "title": "Stop Server",
+      "group": "Server",
+      "description": "Kill the paste server process on port 9876.",
+      "command": "kill $(lsof -ti:9876) 2>/dev/null || echo 'No server running on port 9876'"
+    },
+    {
+      "id": "server.restart",
+      "title": "Restart Server",
+      "group": "Server",
+      "description": "Stop then start the paste server.",
+      "command": "kill $(lsof -ti:9876) 2>/dev/null; sleep 1; node server.mjs &"
+    },
+    {
+      "id": "server.status",
+      "title": "Server Status",
+      "group": "Server",
+      "description": "Check if the paste server is running and responding.",
+      "command": "curl -s http://localhost:9876/health || echo 'Server not running'"
+    },
+    {
+      "id": "dev.link",
+      "title": "Link Plugin",
+      "group": "Development",
+      "description": "Symlink this plugin into ~/.pi-web/plugins/ for local dev. Hard-reload the browser tab after.",
+      "command": "npm run dev:link"
+    },
+    {
+      "id": "dev.unlink",
+      "title": "Unlink Plugin",
+      "group": "Development",
+      "description": "Remove the symlink from ~/.pi-web/plugins/.",
+      "command": "npm run dev:unlink"
+    },
+    {
+      "id": "dev.restart",
+      "title": "Relink (unlink + link)",
+      "group": "Development",
+      "description": "Remove then re-create the symlink — useful after switching branches.",
+      "command": "npm run dev:unlink; npm run dev:link"
+    },
+    {
+      "id": "install.global",
+      "title": "Install from npm",
+      "group": "Install",
+      "description": "Install the published public package globally and symlink it into pi-web plugins.",
+      "command": "npm install -g @yieldcraft/screenshot-paste && ln -sf $(node -e \"console.log(require.resolve('@yieldcraft/screenshot-paste/..'))\") ~/.pi-web/plugins/screenshot-paste",
+      "confirm": true
+    },
+    {
+      "id": "check.link",
+      "title": "Check Symlink",
+      "group": "Diagnostics",
+      "description": "Verify the plugin symlink exists and the server is accessible.",
+      "command": "ls -la ~/.pi-web/plugins/screenshot-paste 2>/dev/null && curl -s http://localhost:9876/health || echo 'Plugin or server not found'"
+    }
+  ]
+}

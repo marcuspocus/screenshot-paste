@@ -1,0 +1,41 @@
+{
+  "name": "@yieldcraft/screenshot-paste",
+  "version": "0.2.1",
+  "description": "pi-web plugin to paste screenshots in the chat as @file image attachments",
+  "type": "module",
+  "piWeb": {
+    "plugins": [
+      {
+        "id": "screenshot-paste",
+        "module": "pi-web-plugin.js"
+      }
+    ]
+  },
+  "keywords": [
+    "pi-package",
+    "pi-web",
+    "pi-web-plugin",
+    "screenshot",
+    "clipboard",
+    "image-attachment"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev:link": "mkdir -p ~/.pi-web/plugins && ln -sf $(pwd) ~/.pi-web/plugins/screenshot-paste",
+    "dev:unlink": "rm -f ~/.pi-web/plugins/screenshot-paste",
+    "server": "node server.mjs"
+  },
+  "files": [
+    "pi-web-plugin.js",
+    "server.mjs",
+    "README.md",
+    "AGENTS.md",
+    ".pi-web/tasks.json",
+    ".pi/extensions/screenshot-paste/index.ts"
+  ],
+  "pi": {
+    "extensions": [
+      ".pi/extensions/screenshot-paste/index.ts"
+    ]
+  }
+}
