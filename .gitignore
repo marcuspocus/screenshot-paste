@@ -1,0 +1,13 @@
+.pi-web/paste/
+.pi-web/attachments/
+docs/tmp/
+*.bak
+node_modules/
+*.log
+.DS_Store
+.env
+.env.local
+*.tmp
+*.temp
+dist/
+build/
